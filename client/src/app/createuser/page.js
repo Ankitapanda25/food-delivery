@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 
 
 const page = () => {
+  
   const router = useRouter()
   const [cred, setCred] = useState({
     name: "",
@@ -53,6 +54,10 @@ const page = () => {
 
     <div>
       <Navbar />
+      <div className="flex">
+        <div>
+          <h1></h1>
+         </div>
       <form method="POST" className="max-w-sm mx-auto mt-5">
         <div className="mb-5">
           <label
@@ -65,7 +70,7 @@ const page = () => {
             type="text"
             name="name"
             id="name"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-none focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-none dark:focus:border-none"
             required
             value={cred.name}
             onChange={onChange}
@@ -84,7 +89,7 @@ const page = () => {
             type="email"
             id="email"
             name="email"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-none focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-none dark:focus:border-none"
             placeholder="eg: name@gmail.com"
             required
             value={cred.email}
@@ -105,7 +110,7 @@ const page = () => {
             name="password"
             id="password"
             value={cred.password}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-none focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-none dark:focus:border-none"
             required
             autoComplete="off"
             onChange={onChange}
@@ -123,7 +128,7 @@ const page = () => {
             type="text"
             name="location"
             id="address"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-none focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-none dark:focus:border-none"
             required
             value={cred.location}
             onChange={onChange}
@@ -133,15 +138,16 @@ const page = () => {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white bg-[#dd610f] hover:bg-[#b14e0c] focus:ring-4 focus:outline-none focus:ring-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-[#dd610f] dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Submit
         </button>
-        <button className="ml-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <button className="ml-4 text-white bg-[#dd610f] hover:bg-[#b14e0c] focus:ring-4 focus:outline-none focus:ring-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-[#dd610f] dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           <Link href="/login">Already a user?</Link>
         </button>
       </form>
     </div>
+      </div>
   );
 };
 

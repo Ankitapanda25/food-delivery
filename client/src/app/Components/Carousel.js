@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Carousel } from 'flowbite-react'
 
-const Carousel = () => {
+const Carousel = ({ filterSearch }, { search }) => {
+  
+  const handleChange = (e) => {
+    onInputChange(e.target.value)
+  }
+  
   return (
     <div>
       <div
@@ -47,8 +52,11 @@ const Carousel = () => {
           </div>
           <form className="absolute z-20 w-[80%] bg-transparent mt-[60vh]">
             <label
+              type='search'
               htmlFor="default-search"
               className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+              value={search}
+              onChange={handleChange}
             >
               Search
             </label>
@@ -57,7 +65,7 @@ const Carousel = () => {
                 <svg
                   className="w-4 h-4 text-gray-500 dark:text-gray-400"
                   aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns=""
                   fill="none"
                   viewBox="0 0 20 20"
                 >
@@ -74,26 +82,20 @@ const Carousel = () => {
                 type="search"
                 id="default-search"
                 className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-none focus:border-none dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white  bg-[#00000059]"
-                placeholder="Search Mockups, Logos..."
+                placeholder="Search for food items.."
                 required
+
+
               />
               <button
                 type="submit"
-                className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-none focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 "
+                className="text-white absolute end-2.5 bottom-2.5 bg-[#dd610f] hover:bg-[#b14e0c] focus:ring-none focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 "
               >
                 Search
               </button>
             </div>
           </form>
         </div>
-
-        {/* <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
-    </div> */}
 
         <button
           type="button"
@@ -104,7 +106,7 @@ const Carousel = () => {
             <svg
               className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
               aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns=""
               fill="none"
               viewBox="0 0 6 10"
             >
@@ -128,7 +130,7 @@ const Carousel = () => {
             <svg
               className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
               aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns=""
               fill="none"
               viewBox="0 0 6 10"
             >
