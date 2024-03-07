@@ -2,17 +2,15 @@
 import React, { useState } from 'react'
 import Navbar from '../Components/Navbar';
 import Link from 'next/link';
-// import { useNavigate } from 'react-router-dom';
-// import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
+
 
 
 
 
 const page = () => {
   const router = useRouter()
-  // const navigate = useNavigate();
-    const [cred, setCred] = useState({
+  const [cred, setCred] = useState({
         email: "",
         password: "",
         
@@ -44,8 +42,8 @@ const page = () => {
 
       }
       if (data.success) {
-        localStorage.setItem('autoToken', data.authToken)
-        console.log(localStorage.getItem('autoToken'));
+        localStorage.setItem('authToken', data.authToken)
+        // console.log(localStorage.getItem('autoToken'));
         alert('login successful');
         router.push("/")
       }

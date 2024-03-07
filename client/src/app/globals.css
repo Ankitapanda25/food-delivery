@@ -23,3 +23,7 @@
     text-wrap: balance;
   }
 }
+
+li{
+  list-style: none;
+}

@@ -15,13 +15,7 @@ const connectDB = async() => {
   const fetched_data = await mongoose.connection.db.collection('fooditems')
   
   const data = await fetched_data.find({}).toArray() 
-    // if (err) console.log(err);
-    // else {
-    //   global.fooditems = data;
-    //   console.log(global.fooditems)
-  // }
-  // global.fooditems = data;
-  // console.log(data);
+    
   const foodCategory = await mongoose.connection.db.collection('foodCategory')
   const catData = await foodCategory.find({}).toArray() 
   global.fooditems = data;
@@ -33,9 +27,9 @@ const connectDB = async() => {
 
 connectDB();
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+// app.get('/', (req, res) => {
+//     res.send('Hello World!')
+// })
 app.use(cors())
 
 app.use(express.json()) 

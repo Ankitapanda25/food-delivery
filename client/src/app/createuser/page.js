@@ -46,7 +46,7 @@ const page = () => {
 
     if (data.success) {
       alert('user register successful!')
-      router.push("/")
+      router.push("/login")
     }
   };
 
