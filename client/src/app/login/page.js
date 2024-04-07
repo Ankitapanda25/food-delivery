@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import Navbar from '../Components/Navbar';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
+import { CartProvider } from '../Components/CardContext';
 
 
 
 
 
-const page = () => {
+const Login = () => {
+
   const router = useRouter()
   const [cred, setCred] = useState({
         email: "",
@@ -45,15 +47,17 @@ const page = () => {
         localStorage.setItem('authToken', data.authToken)
         // console.log(localStorage.getItem('autoToken'));
         alert('login successful');
-        router.push("/")
+        router.push("/home")
       }
     console.log(data);
   };
         
   return (
+    <CartProvider>
+
       <div>
           <Navbar/>
-          <form method="POST" className="max-w-sm mx-auto mt-10">
+          <form method="POST" className="max-w-sm mx-auto mt-[10rem]">
         <div className="mb-5">
         <label
             htmlFor="email"
@@ -100,7 +104,8 @@ const page = () => {
         </button>
       </form>
     </div>
+    </CartProvider>
   )
 }
 
-export default page
+export default Login

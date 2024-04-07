@@ -54,7 +54,7 @@ const page = () => {
 
     <div>
       <Navbar />
-      <div className="flex">
+      <div className="flex mt-[6rem]">
         <div>
           <h1></h1>
          </div>
