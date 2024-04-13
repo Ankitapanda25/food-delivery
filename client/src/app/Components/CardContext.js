@@ -48,7 +48,7 @@
 //   );
 // };
 
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 
 const CardStateContext = createContext();
 const CardDispatchContext = createContext();
@@ -73,17 +73,29 @@ const reducer = (state, action) => {
           console.log(newArr)
           
           return newArr;
+      
+      case "DROP":
+          let empArr = []
+          return empArr
+          
     default:
       console.log("error in reducer");
   }
 };
 
-// const initialState = {
-//     items: [],
-// }
+const initialState = [];
 
 export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, []);
+  const [state, dispatch] = useReducer(reducer, initialState, ()=>{;
+
+  const localData = localStorage.getItem('cart');
+  return localData ? JSON.parse(localData) : initialState;
+});
+
+  useEffect(() => {
+    // Save cart state to local storage whenever it changes
+    localStorage.setItem('cart', JSON.stringify(state));
+  }, [state]);
   return (
     <CardDispatchContext.Provider value={dispatch}>
       <CardStateContext.Provider value={state}>

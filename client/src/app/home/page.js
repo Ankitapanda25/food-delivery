@@ -2,15 +2,9 @@
 
 import React from 'react'
 import { useState, useEffect} from "react";
-
 import Carousel from "../Components/Carousel";
 import Navbar from "../Components/Navbar";
 import Card from '../Components/Card';
-// import { CartProvider } from '../Components/CardContext';
-// import CartProvider from '../Components/Contextreducer';
-
-
-
 
 const home = () => {
   
@@ -38,7 +32,8 @@ const home = () => {
     
     }
     
-    useEffect(() => {
+  useEffect(() => {
+    
       loadData()
     }, [])
     

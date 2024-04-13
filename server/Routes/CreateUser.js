@@ -28,7 +28,8 @@ router.post("/createuser", [
     
         try {
             if (emailExists) {
-            alert('Email already exists')
+                // alert('Email already exists')
+                console.log('exists')
             }
             else {
                 

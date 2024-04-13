@@ -6,6 +6,10 @@ const cors = require('cors')
 const User = require('./Models/User')
 const { body, validationResult } = require('express-validator');
 
+
+
+
+
 const mongoose = require('mongoose');
 const mongoURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.jae60lj.mongodb.net/fooddata?retryWrites=true&w=majority`
 
@@ -35,6 +39,9 @@ app.use(cors())
 app.use(express.json()) 
 app.use('/api', require('./Routes/CreateUser'));
 app.use('/api', require('./Routes/DisplayData'));
+app.use('/api', require('./Routes/OrderData'));
+app.use('/api', require('./Routes/Stripe'));
+
 
   
   app.listen(port, (err) => {

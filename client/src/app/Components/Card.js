@@ -25,6 +25,7 @@ const Card = (props) => {
   const finalPrice = quantity * parseInt(options[size]);
 
   const handleAddToCart = async () => {
+    
     await dispatch({
       type: "ADD",
       id: foodItem._id,

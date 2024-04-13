@@ -2,6 +2,10 @@
 import { useEffect, useState } from "react";
 import { useCart, useDispatch } from "../Components/CardContext";
 import Navbar from "../Components/Navbar";
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe("pk_test_51OxZH6SGsAgxdsk9e8Alop1AtJ8MvDIe7gaJwUFqdJmb02g0zs6pbpoRNJlfWvLKtVXmAoDJqB9K2Jgu8zfsvdUX00u21ytfFp");
+
 
 const Cart = () => {
   let dispatch = useDispatch();
@@ -20,16 +24,6 @@ const Cart = () => {
     );
   };
   
-
-  // const updateSize = (id, newSize) => {
-  //   setCartItems((prevItems) =>
-  //   prevItems.map((item) =>
-  //   item.id === id ? { ...item, size: newSize } : item
-  //   )
-  //   );
-  // };
-  
- 
   const calculateSubtotal = (item) => {
     return item.quantity * item.price;
   };
@@ -42,21 +36,50 @@ const Cart = () => {
       );
     };
     
-    const resetCart = () => {
-      alert("");
-      // dispatch({ type: "CHECKOUT" })
-      data.length == 0;
-      setCartItems([]);
-      
-      // localStorage.removeItem('cartData')
-    };
+  useEffect(() => {
     
-    useEffect(() => {
       console.log("data is: ", data);
       setCartItems(data)
+
     }, [data]);
-    
-    
+  
+  
+
+
+  const handleClick = async () => {
+
+    const stripe = await stripePromise;
+    let userEmail = localStorage.getItem('userEmail');
+
+    let response = await fetch("http://localhost:4000/api/create-checkout-session", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        order_data: data, 
+        email: userEmail,
+      })
+    });
+  
+    const session = await response.json();
+  
+    if (response.ok) {
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id
+      });
+      
+      
+  
+      if (result.error) {
+        alert(result.error.message);
+      }
+    } else {
+      console.error("Network response was not ok.");
+    }
+  };
+  
+
     return (
       <div className="">
       <Navbar />
@@ -71,8 +94,8 @@ const Cart = () => {
               <div>
                 <p className="text-lg font-semibold">{item.name}</p>
                 <div>
-                  Quantity:{item.quantity}
-                  <input
+                  Quantity:
+                  <input className="ml-2 w-[5rem]"
                     type="number"
                     value={item.quantity}
                     min="1"
@@ -82,15 +105,8 @@ const Cart = () => {
                   />
                 </div>
                 <div>
-                  Size:{item.size}
-                  {/* <select
-                    value={item.size}
-                    onChange={(e) => updateSize(item.id, e.target.value)}
-                  >
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                  </select> */}
+                  Size: {item.size}
+                 
                 </div>
               </div>
               <div> 
@@ -105,10 +121,12 @@ const Cart = () => {
             {data.length > 0 ? 
           <div className="flex items-center justify-between">
               
+            {/* <hr className="text-black"/> */}
           <button
-            className="bg-[#dd610f] hover:bg-[#b14e0c] text-white px-4 py-2 rounded-lg"
-            onClick={resetCart}
-          >
+            className="bg-[#dd610f] hover:bg-[#b14e0c] text-white px-4 py-3 rounded-lg"
+                onClick={() => {handleClick();}}
+                
+              >
             Checkout
           </button> 
             <p className="text-lg font-semibold">Total: Rs.{calculateTotal()}</p>
@@ -119,5 +137,6 @@ const Cart = () => {
     </div>
   );
 };
+
 
 export default Cart;
