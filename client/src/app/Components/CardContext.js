@@ -98,7 +98,7 @@ export const CartProvider = ({ children }) => {
     const value = localStorage.getItem('cart');
     setLocalData(value)
     
-  })
+  },[])
   
   
 
