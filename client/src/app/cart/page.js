@@ -37,9 +37,13 @@ const Cart = () => {
     console.log("data is: ", data);
     setCartItems(data);
   }, [data]);
-
+  
+  
+  
+  
   const handleCheckOut = async () => {
-    let userEmail = localStorage.getItem("userEmail");
+   
+    const userEmail = localStorage.getItem("userEmail");
     let response = await fetch(
       "https://food-delivery-api-ivory.vercel.app/api/orderData",
       {
