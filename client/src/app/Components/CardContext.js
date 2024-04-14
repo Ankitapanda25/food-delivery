@@ -48,7 +48,7 @@
 //   );
 // };
 
-import React, { createContext, useContext, useEffect, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer, useState } from "react";
 
 const CardStateContext = createContext();
 const CardDispatchContext = createContext();
@@ -85,12 +85,22 @@ const reducer = (state, action) => {
 
 const initialState = [];
 
-export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState, ()=>{;
 
-  const localData = localStorage.getItem('cart');
-  return localData ? JSON.parse(localData) : initialState;
-});
+
+export const CartProvider = ({ children }) => {
+  const [localData, setLocalData] = useState('')
+  const [state, dispatch] = useReducer(reducer, initialState, ()=>{;
+    return localData ? JSON.parse(localData) : initialState;
+    
+  });
+  
+  useEffect(() => {
+    const value = localStorage.getItem('cart');
+    setLocalData(value)
+    
+  })
+  
+  
 
   useEffect(() => {
     // Save cart state to local storage whenever it changes

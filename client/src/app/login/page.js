@@ -1,12 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CartProvider } from "../Components/CardContext";
 
 const Login = () => {
-  localStorage.removeItem("authToken");
+
+  useEffect(() => {
+    localStorage.removeItem("authToken");
+    
+  },[])
   const router = useRouter();
   const [cred, setCred] = useState({
     email: "",

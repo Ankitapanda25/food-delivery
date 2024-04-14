@@ -21,18 +21,18 @@ const Cart = () => {
       )
     );
   };
-
+  
   const calculateSubtotal = (item) => {
     return item.quantity * item.price;
   };
-
+  
   const calculateTotal = () => {
     return cartItems.reduce(
       (total, item) => total + calculateSubtotal(item),
       0
     );
   };
-
+  
   useEffect(() => {
     console.log("data is: ", data);
     setCartItems(data);
@@ -42,8 +42,17 @@ const Cart = () => {
   
   
   const handleCheckOut = async () => {
-   
-    const userEmail = localStorage.getItem("userEmail");
+    const [userEmail, setUserEmail] = useState("")
+    useEffect(() => {
+      let value
+      // Get the value from local storage if it exists
+      value = localStorage.getItem("userEmail") || ""
+      setUserEmail(value)
+    }, [])
+    
+    
+    // const userEmail= localStorage.getItem("userEmail");
+    
     let response = await fetch(
       "https://food-delivery-api-ivory.vercel.app/api/orderData",
       {
@@ -65,7 +74,7 @@ const Cart = () => {
       console.log(error);
     }
   };
-
+  
   const handleClick = async () => {
     const stripe = await stripePromise;
     let userEmail = localStorage.getItem("userEmail");
