@@ -47,7 +47,7 @@ const Cart = () => {
   const handleCheckOut = async () => {
     
     let userEmail = localStorage.getItem('userEmail')
-    let response = await fetch("http://localhost:4000/api/orderData", {
+    let response = await fetch("https://food-delivery-gray-ten.vercel.app/api/orderData", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const Cart = () => {
     const stripe = await stripePromise;
     let userEmail = localStorage.getItem('userEmail');
 
-    let response = await fetch("http://localhost:4000/api/create-checkout-session", {
+    let response = await fetch("https://food-delivery-gray-ten.vercel.app/api/create-checkout-session", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

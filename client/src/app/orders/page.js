@@ -13,7 +13,7 @@ const orders = () => {
     const fetchMyOrder = async () => {
         // console.log('hello')
         // console.log(localStorage.getItem('userEmail'))
-        await fetch("http://localhost:4000/api/myorderData", {
+        await fetch("https://food-delivery-gray-ten.vercel.app/api/myorderData", {
             // credentials: 'include',
             // Origin:"http://localhost:3000/login",
             method: 'POST',
