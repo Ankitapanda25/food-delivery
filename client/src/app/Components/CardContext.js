@@ -1,53 +1,3 @@
-// // CartContext.js
-// "use client"
-// import React, { createContext, useContext, useReducer } from 'react';
-
-// // Define context
-// const CartContext = createContext();
-
-// // Define initial state
-// const initialState = {
-//   items: [],
-// };
-
-// // Define actions
-// const actionTypes = {
-//   ADD_TO_CART: 'ADD_TO_CART',
-// };
-
-// // Define reducer function
-// const cartReducer = (state, action) => {
-//   switch (action.type) {
-//     case actionTypes.ADD_TO_CART:
-//       return {
-//         ...state,
-//         items: [...state.items, action.payload],
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
-// // Define custom hook to use CartContext
-// export const useCart = () => {
-//   return useContext(CartContext);
-// };
-
-// // Define CartProvider component
-// export const CartProvider = ({ children }) => {
-//   const [state, dispatch] = useReducer(cartReducer, initialState);
-
-//   const addToCart = (item) => {
-//     dispatch({ type: actionTypes.ADD_TO_CART, payload: item });
-//   };
-
-//   return (
-//     <CartContext.Provider value={{ state, addToCart }}>
-//       {children}
-//     </CartContext.Provider>
-//   );
-// };
-
 import React, { createContext, useContext, useEffect, useReducer, useState } from "react";
 
 const CardStateContext = createContext();
@@ -88,24 +38,22 @@ const initialState = [];
 
 
 export const CartProvider = ({ children }) => {
-  const [localData, setLocalData] = useState('')
-  const [state, dispatch] = useReducer(reducer, initialState, ()=>{;
-    return localData ? JSON.parse(localData) : initialState;
-    
+  
+  const [state, dispatch] = useReducer(reducer, initialState, ()=>{
+    if (typeof window !== 'undefined') {
+      const localData = localStorage.getItem('cart');
+      return localData ? JSON.parse(localData) : initialState;
+    }
+    return initialState; 
   });
   
   useEffect(() => {
-    const value = localStorage.getItem('cart');
-    setLocalData(value)
-    
-  },[])
-  
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cart', JSON.stringify(state));
+    }
+  }, [state])
   
 
-  useEffect(() => {
-    // Save cart state to local storage whenever it changes
-    localStorage.setItem('cart', JSON.stringify(state));
-  }, [state]);
   return (
     <CardDispatchContext.Provider value={dispatch}>
       <CardStateContext.Provider value={state}>
