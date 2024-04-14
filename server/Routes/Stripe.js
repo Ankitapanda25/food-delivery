@@ -25,8 +25,8 @@ router.post('/create-checkout-session', async (req, res) => {
             };
           }),
       mode: 'payment',
-      success_url: 'http://localhost:3000/success', // URL to redirect to after successful payment
-      cancel_url: 'http://localhost:3000/cancel',  // URL to redirect to if the payment is canceled
+      success_url: 'https://food-delivery-frontend-rosy.vercel.app/success', // URL to redirect to after successful payment
+      cancel_url: 'https://food-delivery-frontend-rosy.vercel.app/cancel',  // URL to redirect to if the payment is canceled
       customer_email: email, // Optionally, prefill customer email
     });
 

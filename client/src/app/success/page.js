@@ -34,7 +34,7 @@ const page = () => {
   };
   useEffect(() => {
     setTimeout(() => {
-      router.push("/home");
+      router.push("https://food-delivery-frontend-rosy.vercel.app/home");
     }, 2000);
     dispatch({ type: "DROP" });
     handleCheckOut();
