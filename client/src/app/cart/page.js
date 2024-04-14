@@ -44,7 +44,32 @@ const Cart = () => {
     }, [data]);
   
   
-
+  const handleCheckOut = async () => {
+    
+    let userEmail = localStorage.getItem('userEmail')
+    let response = await fetch("http://localhost:4000/api/orderData", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        order_data: data,
+        email: userEmail,
+        order_date: new Date().toDateString()
+      })
+    }
+  );
+  // console.log('Order response:', response)
+  if (response.status === 200) {
+    
+    // const result = (await stripe).redirectToCheckout
+  }
+  else{
+    console.log(error)
+    
+  }
+  
+  }
 
   const handleClick = async () => {
 
@@ -103,10 +128,10 @@ const Cart = () => {
                       updateQuantity(item.id, parseInt(e.target.value))
                     }
                   />
-                </div>
                 <div>
                   Size: {item.size}
                  
+                </div>
                 </div>
               </div>
               <div> 
@@ -116,7 +141,9 @@ const Cart = () => {
                 </p>
               </div>
             </div>
+            
           ))}
+            <hr className="mb-2"/>
         </div>
             {data.length > 0 ? 
           <div className="flex items-center justify-between">
@@ -124,7 +151,7 @@ const Cart = () => {
             {/* <hr className="text-black"/> */}
           <button
             className="bg-[#dd610f] hover:bg-[#b14e0c] text-white px-4 py-3 rounded-lg"
-                onClick={() => {handleClick();}}
+                onClick={() => {handleClick(); handleCheckOut();}}
                 
               >
             Checkout
