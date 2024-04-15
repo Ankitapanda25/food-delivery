@@ -34,7 +34,11 @@ connectDB();
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
-app.use(cors())
+
+var corsOptions = {
+  origin: "https://food-delivery-frontend-rosy.vercel.app/"
+};
+app.use(cors(corsOptions))
 
 app.use(express.json()) 
 app.use('/api', require('./Routes/CreateUser'));
