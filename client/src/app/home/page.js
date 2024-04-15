@@ -21,17 +21,17 @@ const home = () => {
         },
       }
     );
-
+    
     response = await response.json();
     // console.log(response[0], response[1]);
     const options = response[0][0].options[0];
     const price = Object.values(options);
-    console.log(price[0]);
-
+    // console.log(price[0]);
+    
     setFoodItem(response[0]);
     setFoodCat(response[1]);
   };
-
+  
   useEffect(() => {
     loadData();
   }, []);
