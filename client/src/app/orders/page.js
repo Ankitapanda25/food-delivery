@@ -83,7 +83,7 @@ const orders = () => {
                                         </span>
                                         {/* <span className='m-1'>{data}</span> */}
                                         <div className=" d-inline ms-2 h-100 w-20 fs-5">
-                                          ₹{arrayData.price}/-
+                                          Rs.{arrayData.price}
                                         </div>
                                       </div>
                                     </div>
