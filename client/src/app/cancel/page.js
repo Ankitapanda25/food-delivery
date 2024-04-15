@@ -12,8 +12,9 @@ const page = () => {
         
     },[])
   return (
-    <div>
-      cancel
+    <div className='flex justify-center' >
+          <h1>Transaction failed</h1>
+          <h1>Redirecting to the home page...</h1>
     </div>
   )
 }

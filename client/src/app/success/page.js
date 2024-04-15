@@ -39,7 +39,12 @@ const page = () => {
     dispatch({ type: "DROP" });
     handleCheckOut();
   }, []);
-  return <div>Success</div>;
+    return (
+    <div className="flex justify-center">
+            <h1>Transaction successful</h1>
+            <h2>Redirecting to the home page...</h2>
+    </div>
+    );
 };
 
 export default page;
