@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 })
 
 var corsOptions = {
-  origin: "https://food-delivery-frontend-rosy.vercel.app/"
+  origin: "https://food-delivery-frontend-rosy.vercel.app"
 };
 app.use(cors(corsOptions))
 
